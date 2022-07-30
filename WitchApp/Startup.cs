@@ -23,6 +23,8 @@ namespace WitchApp
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+
+            services.AddSession();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -36,6 +38,8 @@ namespace WitchApp
             {
                 app.UseExceptionHandler("/Home/Error");
             }
+            app.UseSession();
+
             app.UseStaticFiles();
 
             app.UseRouting();

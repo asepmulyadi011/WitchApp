@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
+using WitchApp.Helpers;
 using WitchApp.Models;
 
 namespace WitchApp.Controllers
@@ -36,7 +37,18 @@ namespace WitchApp.Controllers
         [HttpPost]
         public IActionResult AddVillager(Villager villager)
         {
-            return View();
+            List<Villager> dataVillagers = SessionHelper.GetObjectFromJson<List<Villager>>(HttpContext.Session, "villagers");
+
+            if (dataVillagers == null)
+            {
+                dataVillagers = new List<Villager>();
+            }
+
+            dataVillagers.Add(villager);
+
+            SessionHelper.SetObjectAsJson(HttpContext.Session, "villagers", dataVillagers);
+
+            return View("Index");
         }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
