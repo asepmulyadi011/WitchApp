@@ -28,6 +28,17 @@ namespace WitchApp.Controllers
             return View();
         }
 
+        public IActionResult AddVillager()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public IActionResult AddVillager(Villager villager)
+        {
+            return View();
+        }
+
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
